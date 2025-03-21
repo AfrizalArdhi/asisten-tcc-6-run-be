@@ -1,13 +1,15 @@
 import express from "express";
 import cors from "cors";
-import UserRoute from "./routes/UserRoute.js";
+import router from "./route/Route.js";
 
 const app = express();
-app.set("view engine", "ejs");
-
 app.use(cors());
 app.use(express.json());
-app.get("/", (req, res) => res.render("index"));
-app.use(UserRoute);
+app.use(router);
 
-app.listen(5000, () => console.log("Server connected"));
+// Tambahkan ini biar akses "/" gak error
+app.get('/', (req, res) => {
+  res.send('Backend is running...');
+});
+
+app.listen(5000, () => console.log('Server Up and Running...'));
